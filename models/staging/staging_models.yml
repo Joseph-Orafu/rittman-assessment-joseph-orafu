@@ -1,0 +1,22 @@
+---
+
+version: 2
+
+models:
+    - name: stg_comments
+      description: '{{ doc("stg_comments") }}'
+
+    - name: stg_post_answers
+      description: '{{ doc("stg_post_answers") }}'
+
+    - name: stg_post_history
+      description: '{{ doc("stg_post_history") }}'
+
+    - name: stg_post_links
+      description: '{{ doc("stg_post_links") }}'
+
+    - name: stg_post_questions
+      description: '{{ doc("stg_post_questions") }}'
+
+    - name: stg_stackoverflow_posts
+      description: '{{ doc("stg_stackoverflow_posts") }}'

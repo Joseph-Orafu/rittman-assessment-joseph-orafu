@@ -1,0 +1,37 @@
+---
+version: 2
+
+sources: 
+  - name: stackoverflow
+    database: bigquery-public-data
+    schema: stackoverflow
+    tables:
+      - name: posts_questions
+        description: '{{ doc("posts_questions") }}'
+        freshness:
+            warn_after: {count: 30, period: day}
+            error_after: {count: 30, period: day}
+        loaded_at_field: last_edit_date
+
+      - name: posts_answers
+        description: '{{ doc("posts_answers") }}'
+        freshness:
+            warn_after: {count: 30, period: day}
+            error_after: {count: 30, period: day}
+        loaded_at_field: last_edit_date
+
+      - name: post_history
+        description: '{{ doc("posts_history") }}'
+
+      - name: post_links
+        description: '{{ doc("posts_links") }}'
+
+      - name: stackoverflow_posts
+        description: '{{ doc("stackoverflow_posts") }}'
+        freshness:
+            warn_after: {count: 30, period: day}
+            error_after: {count: 30, period: day}
+        loaded_at_field: last_edit_date
+
+      - name: comments
+        description: '{{ doc("comments") }}'
