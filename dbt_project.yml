@@ -1,9 +1,9 @@
 ---
 # These are base configs for dbt.
-name: "dbt_data"
+name: "bigquery_public_dataset"
 version: "1.0.0"
 config-version: 2
-profile: "dbt-data"
+profile: "bigquery_public_dataset"
 model-paths: ["models"]
 seed-paths: ["seeds"]
 analysis-paths: ["analysis"]
@@ -29,7 +29,7 @@ vars:
       value: rittman_assessment_data
 
   # BigQuery Default Regions
-  bigquery_project_default_region: region-eu
+  bigquery_project_default_region: region-us
 
 # Models
 models:
