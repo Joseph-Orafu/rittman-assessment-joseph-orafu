@@ -1,0 +1,28 @@
+---
+# The dev output is an example config for your local dbt profiles.yml
+# For automation, cloud_run_job_automation is used
+# In dev containers, sandbox is used
+# Windows: C:\users\...\.dbt\profiles.yml
+# Mac: Run "open ~/.dbt/profiles.yml"
+
+"rittman_assessment":
+  target: sandbox
+  outputs:
+    cloud_run_job_automation:
+      type: bigquery
+      method: oauth
+      use_colors: false
+      project: "{{env_var('PROJECT_ID', 'prj-rittman_assessment')}}"
+      dataset: chor  # not being used so set to anything here
+      threads: 8
+    # this target should only be used when developing locally
+    sandbox:
+      dataset: "{{env_var('DBT_DEVELOPER_NAME', 'developer')}}"  # for sandbox this must be developer name
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      location: europe-west3
+      method: oauth
+      priority: interactive
+      project: prj-rittman-assessment
+      threads: 1
+      type: bigquery

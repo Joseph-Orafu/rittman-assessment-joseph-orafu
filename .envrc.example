@@ -1,0 +1,4 @@
+export DBT_PROFILES_DIR=local_config
+export DBT_TARGET_PROFILE=sandbox
+export DBT_DEVELOPER_NAME=<your-developer-name-here>
+export DBT_BIGQUERY_PROJECT=prj-rittman-assessment
