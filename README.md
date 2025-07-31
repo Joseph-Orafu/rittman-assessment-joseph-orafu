@@ -24,10 +24,11 @@ This repository includes all the re-usable modules for the Rittman Anaytics Asse
 ├── analysis
 ├── macros
 ├── models
-│   └── core
+│   └── reporting
 |   └── intermediate
 │   └── staging
 │   └── utils
+|   └── warehousing
 ├── snapshots
 ├── tests
 ```
@@ -128,7 +129,7 @@ A [Pull Request Template](.github/pull_request_template.md) has been created tha
 
 When a code review has been requested as part of a raised PR, please keep the following guidelines and questions in mind:
 
-- Read through the PR description and relevant JIRA ticket to get an understanding of what the PR aims to achieve
+- Read through the PR description to get an understanding of what the PR aims to achieve
 - Is the code well structured and well formatted?
 - Does the code include comments and other sorts of documentation where necessary?
 - Is the code maintainable easily?
