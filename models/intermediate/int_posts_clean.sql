@@ -15,7 +15,7 @@ SELECT
     END AS favorite_count,
     last_activity_date,
     last_editor_user_id,
-    owner_user_id
+    owner_user_id,
     parent_id,
     score,
     tags,
