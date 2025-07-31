@@ -1,0 +1,18 @@
+---
+version: 2
+
+models:
+    - name: dwh_join_answers_questions
+      description: '{{ doc("dwh_join_answers_questions_description") }}'
+      columns:
+          - name: question_id
+            tests:
+                - unique
+                - not_null
+
+    - name: dwh_join_posts
+      description: '{{ doc("dwh_join_posts_description") }}'
+      columns:
+          - name: stackoverflow_id
+            tests:
+                - not_null
