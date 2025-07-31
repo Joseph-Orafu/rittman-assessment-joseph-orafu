@@ -1,0 +1,18 @@
+---
+version: 2
+
+models:
+    - name: rep_quest_ans
+      description: '{{ doc("rep_quest_ans_description") }}'
+      columns:
+          - name: question_id
+            tests:
+                - unique
+                - not_null
+
+    - name: rep_posts
+      description: '{{ doc("rep_posts_description") }}'
+      columns:
+          - name: stackoverflow_id
+            tests:
+                - not_null
