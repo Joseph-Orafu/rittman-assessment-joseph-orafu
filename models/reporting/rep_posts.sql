@@ -17,4 +17,4 @@ max_date AS (
 
 SELECT *
 FROM base
-WHERE DATE(post_last_activity_date) >= DATE_SUB((SELECT latest_date FROM max_date), INTERVAL 5 YEAR)
+WHERE DATE(post_last_activity_date) >= DATE_SUB((SELECT latest_date FROM max_date), INTERVAL 1 YEAR)
