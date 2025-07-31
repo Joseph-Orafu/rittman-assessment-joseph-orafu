@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: int_answers_clean
+    description: "{{ doc('int_answers_clean_description') }}"
+    columns: 
+      - name: answer_id
+        tests: 
+          - unique
+          - not_null
+
+  - name: int_questions_clean
+    description: "{{ doc('int_questions_clean_description') }}"
+    columns: 
+      - name: question_id
+        tests: 
+          - unique
+          - not_null
+
+  - name: int_posts_clean
+    description: "{{ doc('int_posts_clean_description') }}"
+    columns: 
+      - name: stackoverflow_id
+        tests: 
+          - unique
+          - not_null
+
+  - name: int_comments_clean
+    description: "{{ doc('int_comments_clean_description') }}"
+    columns: 
+      - name: comment_id
+        tests: 
+          - unique
+          - not_null
+      - name: stackoverflow_post_id
+        tests: 
+          - not_null
+
+  - name: int_links_clean
+    description: "{{ doc('int_links_clean_description') }}"
+    columns: 
+      - name: stackoverflow_post_id
+        tests: 
+          - not_null
+
+  - name: int_history_clean
+    description: "{{ doc('int_history_clean_description') }}"
+    columns: 
+      - name: stackoverflow_post_id
+        tests: 
+          - not_null
