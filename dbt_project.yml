@@ -46,25 +46,25 @@ models:
         subject_matter: staging_objects
 
     intermediate:
-      schema: assessmment_warehouse  # typo preserved to match your actual dataset
-      +materialized: table
+      schema: assessment_warehouse  # typo preserved to match your actual dataset
+      +materialized: view
       +labels:
         subject_matter: intermediate_tables
 
     warehousing:
       schema: assessmment_warehouse
-      +materialized: table
+      +materialized: view
       +labels:
         subject_matter: analyst_facing_tables
 
     reporting:
       schema: assessment_analytics
-      +materialized: table
+      +materialized: view
       +labels:
         subject_matter: power_bi_facing_tables
 
     utils:
       schema: assessment_analytics
-      +materialized: table
+      +materialized: view
       +labels:
         subject_matter: utility_objects
