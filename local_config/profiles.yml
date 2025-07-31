@@ -6,14 +6,15 @@
 # Mac: Run "open ~/.dbt/profiles.yml"
 
 "bigquery_public_dataset":
-  target: sandbox
+  target: "{{ env_var('cloud_run_job', 'sandbox') }}" # DBT_TARGET_PROFILE for a production orchestrator should be set to "cloud_run_job"
   outputs:
-    cloud_run_job_automation:
+    cloud_run_job:
       type: bigquery
       method: oauth
-      use_colors: false
-      project: "{{env_var('PROJECT_ID', 'prj_rittman_assessment')}}"
-      dataset: chor  # not being used so set to anything here
+      project: "{{ env_var('DBT_BIGQUERY_PROJECT') }}" # DBT_BIGQUERY_PROJECT for a production orchestrator should be set to "project name"
+      dataset: "" # when running in production, datasets to be prefixed with product name
+      schema: "{{ env_var('DBT_BIGQUERY_SCHEMA', 'assessment_staging') }}"
+      location: US
       threads: 8
     # this target should only be used when developing locally
     sandbox:
