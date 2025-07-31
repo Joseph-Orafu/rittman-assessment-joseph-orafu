@@ -1,23 +1,21 @@
----
-# These are base configs for dbt.
 name: "bigquery_public_dataset"
 version: "1.0.0"
 config-version: 2
 profile: "bigquery_public_dataset"
+
 model-paths: ["models"]
 seed-paths: ["seeds"]
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+
 target-path: "target"
 packages-install-path: "dbt_packages"
 clean-targets: ["target", "dbt_packages"]
 
-# Require dbt 1.0.0+
 require-dbt-version: [">=1.2.0"]
 
-# Variables
 vars:
   util_days_start_date: "1970-01-01"
   dataset_labels:
@@ -28,65 +26,45 @@ vars:
     - key: description
       value: rittman_assessment_data
 
-  # BigQuery Default Regions
   bigquery_project_default_region: region-us
 
-# Models
 models:
-  dbt_data:
+  bigquery_public_dataset:  # This must match the `name:` above
     +persist_docs:
       relation: true
       columns: true
 
-    # Note: Labels cannot currently inherit, so you can't
-    # define one set of labels here and another further down
-    # without losing the original set. Hence the labels have to be
-    # redeclared if you want to apply a different set.
-    +labels: &core_labels
+    +labels:
       data_owner: joseph_orafu
       classification: public
       description: rittman_assessment_data
 
-    reporting:
-      schema: rp
-      # Default materialization of reporting outputs should be tables
-      +materialized: table
-      # use a yaml override to add additional labels at lower levels
-      +labels:
-        <<: *core_labels
-        subject_matter: power_bi_facing_tables
-
-    warehousing:
-      schema: dwh
-      +materialized: table
-      +labels:
-        <<: *core_labels
-        subject_matter: analyst_facing_tables
-
-    intermediate:
-      +schema: int
-      +labels:
-        <<: *core_labels
-        subject_matter: intermediate_tables
-
-      # creating the intermediate tables is some of the most complex
-      # logic, so make these tables so that queries can execute.
-      
-
     staging:
-      # Default materialization of staging should be views
-      schema: stg
-      # use a yaml override to add additional labels at lower levels
+      schema: assessment_staging
+      +materialized: view
       +labels:
-        <<: *core_labels
         subject_matter: staging_objects
 
-    utils:
-      # Default materialization of utils should be tables
-      +materialized: table
+    intermediate:
+      schema: assessment_warehouse  # typo preserved to match your actual dataset
+      +materialized: view
       +labels:
-        <<: *core_labels
+        subject_matter: intermediate_tables
+
+    warehousing:
+      schema: assessmment_warehouse
+      +materialized: view
+      +labels:
+        subject_matter: analyst_facing_tables
+
+    reporting:
+      schema: assessment_analytics
+      +materialized: view
+      +labels:
+        subject_matter: power_bi_facing_tables
+
+    utils:
+      schema: assessment_analytics
+      +materialized: view
+      +labels:
         subject_matter: utility_objects
-#
-#on-run-end:
-#    - "{{ post_elt_task() }}"
