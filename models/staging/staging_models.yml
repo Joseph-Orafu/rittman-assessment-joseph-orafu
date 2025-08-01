@@ -5,18 +5,48 @@ version: 2
 models:
     - name: stg_comments
       description: '{{ doc("stg_comments") }}'
+      columns:
+          - name: id
+            tests:
+                - not_null
+                - unique
 
     - name: stg_post_answers
       description: '{{ doc("stg_post_answers") }}'
+      columns:
+          - name: id
+            tests:
+                - not_null
+                - unique
 
     - name: stg_post_history
       description: '{{ doc("stg_post_history") }}'
+      columns:
+          - name: id
+            tests:
+                - not_null
+                - unique
 
     - name: stg_post_links
       description: '{{ doc("stg_post_links") }}'
+      columns:
+          - name: id
+            tests:
+                - not_null
+                - unique
 
     - name: stg_post_questions
       description: '{{ doc("stg_post_questions") }}'
+      columns:
+          - name: id
+            tests:
+                - not_null
+                - unique
 
     - name: stg_stackoverflow_posts
       description: '{{ doc("stg_stackoverflow_posts") }}'
+      columns:
+          - name: id
+            tests:
+                - not_null
+                - unique
