@@ -52,7 +52,7 @@ models:
         subject_matter: intermediate_tables
 
     warehousing:
-      schema: assessmment_warehouse
+      schema: assessment_warehouse
       +materialized: view
       +labels:
         subject_matter: analyst_facing_tables
